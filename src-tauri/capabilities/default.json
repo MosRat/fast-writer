@@ -43,6 +43,7 @@
     "http:default",
     "dialog:default",
     "webview:allow-create-webview-window",
+    "webview:allow-create-webview",
     "window:allow-set-focus",
     "window:allow-destroy"
   ]

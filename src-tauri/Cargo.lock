@@ -949,6 +949,20 @@ dependencies = [
 ]
 
 [[package]]
+name = "fast-writer"
+version = "0.1.0"
+dependencies = [
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-dialog",
+ "tauri-plugin-fs",
+ "tauri-plugin-http",
+ "tauri-plugin-shell",
+]
+
+[[package]]
 name = "fastrand"
 version = "2.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -3756,20 +3770,6 @@ dependencies = [
  "url",
  "urlpattern",
  "walkdir",
-]
-
-[[package]]
-name = "tauri-vite-vue"
-version = "0.1.0"
-dependencies = [
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-dialog",
- "tauri-plugin-fs",
- "tauri-plugin-http",
- "tauri-plugin-shell",
 ]
 
 [[package]]

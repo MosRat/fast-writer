@@ -1,7 +1,7 @@
 {
-  "productName": "tauri-vite-vue",
+  "productName": "fast-writer",
   "version": "0.1.0",
-  "identifier": "com.whl.tauri",
+  "identifier": "com.whl.fast-writer",
   "build": {
     "beforeDevCommand": "pnpm dev ",
     "devUrl": "http://localhost:1420",
@@ -9,26 +9,6 @@
     "frontendDist": "../dist"
   },
   "app": {
-    "windows": [
-      {
-        "title": "Main",
-        "label": "main",
-        "width": 800,
-        "height": 600,
-        "decorations": false,
-        "transparent": true,
-        "resizable": false,
-        "shadow": true,
-        "theme": "Dark",
-        "windowEffects": {
-          "effects": [
-            "acrylic",
-            "tabbed",
-            "mica"
-          ]
-        }
-      }
-    ],
     "security": {
       "csp": null
     }

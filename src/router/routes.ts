@@ -5,8 +5,18 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/tauri',
         name: 'tauri',
-        alias: '/',
         component: () => import('@view/Tauri.vue'),
+    },
+    {
+        path: '/header',
+        name: 'header',
+        component: () => import('@cp/TitleBar.vue'),
+    },
+    {
+        path: '/overleaf',
+        name: 'Editor',
+        alias: '/',
+        component: () => import('@view/OverLeaf.vue'),
     },
     {
         path: '/:pathMatch(.*)*\'',

@@ -28,7 +28,9 @@ onMounted(async () => {
         <img src="/icon.png" alt="icon">
       </div>
       <div class="titlebar-title">
-        <slot></slot>
+        <slot>
+          Fast Writer
+        </slot>
       </div>
     </div>
     <div id="titlebar-minimize" class="titlebar-button" @click="appWindow.minimize()">
@@ -39,7 +41,7 @@ onMounted(async () => {
     </div>
     <div id="titlebar-maximize" class="titlebar-button" @click="minMax">
       <img
-          :src="isMaximized?`/${darkMode}dark-icon/fluent_window-multiple-16-regular.svg`:`/${darkMode}-icon/fluent_maximize-16-regular.svg`"
+          :src="isMaximized?`/${darkMode}-icon/fluent_window-multiple-16-regular.svg`:`/${darkMode}-icon/fluent_maximize-16-regular.svg`"
           alt="maximize"
       />
     </div>
@@ -51,7 +53,7 @@ onMounted(async () => {
 
 <style scoped>
 .titlebar {
-  height: 5vh;
+  height: 100vh;
   padding-top: 1vh;
   user-select: none;
   display: flex;
@@ -64,7 +66,7 @@ onMounted(async () => {
 
 .titlebar-text {
   flex-grow: 1;
-  padding-left: 1vw;
+  padding-left: 0.5vw;
   display: flex;
   align-items: center;
 }
@@ -80,7 +82,7 @@ onMounted(async () => {
 }
 
 .titlebar-icon img {
-  max-height: 4vh;
+  max-height: 65vh;
 
 }
 
@@ -88,8 +90,9 @@ onMounted(async () => {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 5vw;
-  height: 5vh;
+  width: 3vw;
+  min-width: 48px;
+  height: 100vh;
 }
 
 .titlebar-button:hover {
