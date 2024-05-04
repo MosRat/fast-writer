@@ -22,7 +22,6 @@ serde_json = "1"
 tauri-plugin-http = "2.0.0-beta.7"
 tauri-plugin-fs = "2.0.0-beta.7"
 tauri-plugin-dialog = "2.0.0-beta.7"
-url = "2.5.0"
 
 [target.'cfg(target_os = "macos")'.dependencies]
 tauri = { version = "2.0.0-beta", optional = true, features = ["unstable", "macos-private-api","devtools"] }
