@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
+import {ref, watchEffect} from 'vue';
 import katex from 'katex';
 
 const latex = ref('');
@@ -7,7 +7,7 @@ const rendered = ref('');
 
 watchEffect(() => {
   try {
-    rendered.value = latex.value ? katex.renderToString(latex.value, { throwOnError: false }) : '';
+    rendered.value = latex.value ? katex.renderToString(latex.value, {throwOnError: false}) : '';
   } catch (error) {
     console.error('LaTeX 渲染错误:', error);
     rendered.value = '';
@@ -27,10 +27,10 @@ watchEffect(() => {
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  max-height: 20%;
+  height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
 }
 
@@ -41,11 +41,15 @@ watchEffect(() => {
   border: 1px solid #ccc;
   border-radius: 5px;
   margin: 10px auto;
+  background: transparent;
 }
 
 .latex-preview {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+  min-width: 100%;
+  margin: 10px auto;
+  min-height: 55%;
 }
 </style>

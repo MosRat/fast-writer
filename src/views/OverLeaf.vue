@@ -25,24 +25,23 @@ import LatexEditor from "@cp/LatexEditor.vue";
 </script>
 
 <template>
-  <div>
+  <div class="container">
     <LatexEditor>
 
     </LatexEditor>
-    <iframe src="https://chat.openai.com/">
-
-    </iframe>
   </div>
 
 </template>
 
 <style scoped>
-div {
+
+
+.container {
   box-sizing: border-box;
   height: 90vh;
   border: 1px solid transparent;
   border-radius: 2px;
-  background:transparent;
+  background: transparent;
   padding: 2px;
   margin: 8px;
 }

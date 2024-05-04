@@ -2,10 +2,12 @@
 import {getCurrent} from '@tauri-apps/api/window'
 import type {Theme} from '@tauri-apps/api/window'
 import {onMounted, ref} from "vue";
+import {navigate_webview} from "@lib/webview.ts";
 
 const appWindow = getCurrent()
 const darkMode = ref("light")
 const isMaximized = ref(false)
+const isOverleaf = ref(true)
 const minMax = async () => {
   if (await appWindow.isMaximized()) {
     await appWindow.unmaximize()
@@ -33,7 +35,27 @@ onMounted(async () => {
         </slot>
       </div>
     </div>
-    <div id="titlebar-minimize" class="titlebar-button" @click="appWindow.minimize()">
+    <div
+        id="titlebar-overleaf" :class="{
+      'titlebar-button':true,
+      'chosen-loader':isOverleaf
+    }" @click="navigate_webview('w2','https://www.overleaf.com/project');isOverleaf=true">
+      <img
+          src="/overleaf.png"
+          alt="overleaf"
+      />
+    </div>
+    <div
+        id="titlebar-typst" :class="{
+      'titlebar-button':true,
+      'chosen-loader':!isOverleaf
+    }" @click="navigate_webview('w2','https://typst.app/');isOverleaf=false">
+      <img
+          src="/typst.png"
+          alt="typst"
+      />
+    </div>
+    <div id="titlebar-minimize" class="titlebar-button" @click="appWindow.minimize">
       <img
           :src="`/${darkMode}-icon/fluent_minimize-16-regular.svg`"
           alt="minimize"
@@ -45,7 +67,7 @@ onMounted(async () => {
           alt="maximize"
       />
     </div>
-    <div id="titlebar-close" class="titlebar-button" @click="appWindow.close()">
+    <div id="titlebar-close" class="titlebar-button" @click="appWindow.close">
       <img :src="`/${darkMode}-icon/ant-design_close-outlined.svg`" alt="close"/>
     </div>
   </div>
@@ -99,7 +121,25 @@ onMounted(async () => {
   background: #888888;
 }
 
+.chosen-loader {
+  background: rgba(136, 136, 136, 0.47);
+  border-radius: 4px;
+  border: 1px solid rgba(194, 194, 194, 0.89);
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1); /* 水平偏移量 | 垂直偏移量 | 模糊半径 | 阴影颜色 */
+
+
+}
+
 #titlebar-close:hover {
   background: #fd4543;
+}
+
+#titlebar-overleaf, #titlebar-typst {
+  display: flex;
+  justify-content: center;
+}
+
+#titlebar-overleaf img, #titlebar-typst img {
+  max-width: 1.5vw;
 }
 </style>

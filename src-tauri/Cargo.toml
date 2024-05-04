@@ -15,11 +15,14 @@ crate-type = ["lib", "cdylib", "staticlib"]
 tauri-build = { version = "2.0.0-beta", features = [] }
 
 [dependencies]
-tauri = { version = "2.0.0-beta", features = ["unstable"] }
+tauri = { version = "2.0.0-beta", optional = true, features = ["unstable","devtools"] }
 tauri-plugin-shell = "2.0.0-beta"
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 tauri-plugin-http = "2.0.0-beta.7"
 tauri-plugin-fs = "2.0.0-beta.7"
 tauri-plugin-dialog = "2.0.0-beta.7"
+url = "2.5.0"
 
+[target.'cfg(target_os = "macos")'.dependencies]
+tauri = { version = "2.0.0-beta", optional = true, features = ["unstable", "macos-private-api","devtools"] }
