@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Fast Writer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            background: transparent;
+        }
+
+        body {
+            height: 100vh;
+            background: linear-gradient(rgba(252, 248, 235, 0.1), rgba(255, 250, 230, 0.1)) !important;
+            -webkit-backdrop-filter: blur(15px) !important;
+            backdrop-filter: blur(15px) !important;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 10vh 0;
+        }
+
+        img {
+            width: 5em;
+        }
+
+        .copyright {
+            flex-grow: 1;
+            padding-top: 10vh;
+            font-size: 0.8rem;
+            color: rgba(24, 24, 24, 0.5);
+        }
+
+        //@media (prefers-color-scheme: dark) {
+        //    :root {
+        //        color: #f6f6f6;
+        //        background-color: transparent;
+        //    }
+        //
+        //    .copyright{
+        //        color: rgba(218, 218, 218, 0.5);
+        //    }
+        //
+        //}
+    </style>
+</head>
+<body>
+<div class="container">
+    <img src="/icon.png" alt="">
+    <h1>Fast Writer</h1>
+    <div class="row">
+        It was super effective!
+    </div>
+    <div class="copyright">
+        Copyright (c) 2024. MosRat All rights reserved.
+    </div>
+</div>
+</body>
+</html>

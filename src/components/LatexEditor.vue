@@ -36,12 +36,13 @@ watchEffect(() => {
 
 .latex-input {
   width: 100%;
-  padding-block: 10px;
+  padding: 10px 5px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin: 10px auto;
+  margin: 2vh auto;
   background: transparent;
+
 }
 
 .latex-preview {
@@ -49,7 +50,11 @@ watchEffect(() => {
   border: 1px solid #ccc;
   border-radius: 5px;
   min-width: 100%;
-  margin: 10px auto;
-  min-height: 55%;
+  margin: 1.5vh auto;
+  flex: 1;
+}
+
+input{
+  color: inherit;
 }
 </style>

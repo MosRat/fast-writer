@@ -1,4 +1,15 @@
 <script setup lang="ts">
+import {getCurrentWebview} from "@tauri-apps/api/webview";
+import {useRouter} from "vue-router";
+
+const router =useRouter()
+
+const webview = getCurrentWebview()
+router.replace({
+  path:`/${webview.label}`
+})
+
+
 
 </script>
 
@@ -10,7 +21,10 @@
 
 <style scoped>
 .main-container {
-  margin-top: 0;
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
 }
 
 </style>

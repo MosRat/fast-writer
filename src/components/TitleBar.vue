@@ -1,13 +1,18 @@
 <script setup lang="ts">
-import {getCurrent} from '@tauri-apps/api/window'
+import {getCurrentWindow} from "@tauri-apps/api/window";
 import type {Theme} from '@tauri-apps/api/window'
 import {onMounted, ref} from "vue";
 import {navigate_webview} from "@lib/webview.ts";
 
-const appWindow = getCurrent()
+// import {attachConsole} from '@tauri-apps/plugin-log';
+import {listen} from "@tauri-apps/api/event";
+
+
+const appWindow = getCurrentWindow()
 const darkMode = ref("light")
 const isMaximized = ref(false)
 const isOverleaf = ref(true)
+const isLoading = ref(false)
 const minMax = async () => {
   if (await appWindow.isMaximized()) {
     await appWindow.unmaximize()
@@ -17,7 +22,20 @@ const minMax = async () => {
     isMaximized.value = true
   }
 }
+
+const switchWebview = async () => {
+  if (!isLoading.value){
+    isLoading.value=true
+    await navigate_webview('w2', isOverleaf.value ? 'https://typst.app/' : 'https://overleaf.whl.moe/project');
+    isOverleaf.value = !isOverleaf.value
+    const unlisten = await listen<void>("loaded", async () => {
+      isLoading.value=false
+      unlisten()
+    })
+  }
+}
 onMounted(async () => {
+  // await attachConsole();
   darkMode.value = (await appWindow.theme()) as Theme
 })
 
@@ -36,10 +54,13 @@ onMounted(async () => {
       </div>
     </div>
     <div
-        id="titlebar-overleaf" :class="{
+        id="titlebar-overleaf"
+        :class="{
       'titlebar-button':true,
       'chosen-loader':isOverleaf
-    }" @click="navigate_webview('w2','https://www.overleaf.com/project');isOverleaf=true">
+    }"
+        @click="!isOverleaf && switchWebview()"
+    >
       <img
           src="/overleaf.png"
           alt="overleaf"
@@ -49,7 +70,7 @@ onMounted(async () => {
         id="titlebar-typst" :class="{
       'titlebar-button':true,
       'chosen-loader':!isOverleaf
-    }" @click="navigate_webview('w2','https://typst.app/');isOverleaf=false">
+    }" @click="isOverleaf && switchWebview()">
       <img
           src="/typst.png"
           alt="typst"
@@ -67,7 +88,7 @@ onMounted(async () => {
           alt="maximize"
       />
     </div>
-    <div id="titlebar-close" class="titlebar-button" @click="appWindow.close">
+    <div id="titlebar-close" class="titlebar-button" @click="appWindow.hide">
       <img :src="`/${darkMode}-icon/ant-design_close-outlined.svg`" alt="close"/>
     </div>
   </div>
@@ -84,28 +105,30 @@ onMounted(async () => {
   top: 0;
   left: 0;
   right: 0;
+
 }
 
 .titlebar-text {
   flex-grow: 1;
-  padding-left: 0.5vw;
+  padding-left: 1vw;
   display: flex;
   align-items: center;
 }
 
 .titlebar-title {
   padding-left: 0.5vw;
+  font-size: 0.9rem;
 }
 
 .titlebar-icon {
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .titlebar-icon img {
-  max-height: 65vh;
-
+  max-height: 20px;
 }
 
 .titlebar-button {
@@ -114,20 +137,18 @@ onMounted(async () => {
   align-items: center;
   width: 3vw;
   min-width: 48px;
-  height: 100vh;
+  height: 95vh;
 }
 
 .titlebar-button:hover {
-  background: #888888;
+  background: rgba(136, 136, 136, 0.5);
 }
 
 .chosen-loader {
-  background: rgba(136, 136, 136, 0.47);
+  background: rgba(136, 136, 136, 0.2);
   border-radius: 4px;
-  border: 1px solid rgba(194, 194, 194, 0.89);
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.1); /* 水平偏移量 | 垂直偏移量 | 模糊半径 | 阴影颜色 */
-
-
+  border: 1px solid rgba(194, 194, 194, 0.25);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 水平偏移量 | 垂直偏移量 | 模糊半径 | 阴影颜色 */
 }
 
 #titlebar-close:hover {

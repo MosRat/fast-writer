@@ -10,6 +10,14 @@ export default defineConfig(async () => ({
     define: {
         __VUE_PROD_DEVTOOLS__: true,
     },
+    build: {
+        rollupOptions: {
+            input: {
+                main: resolve(__dirname, 'index.html'),
+                splashscreen: resolve(__dirname, 'splashscreen.html'), // 你的额外 HTML 文件
+            },
+        },
+    },
     resolve: {
         alias: {
             '@': resolve(__dirname, "./src"),

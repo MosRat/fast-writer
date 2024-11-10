@@ -1,6 +1,7 @@
 {
+  "$schema": "./config-schema.json",
   "productName": "fast-writer",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "identifier": "com.whl.fast-writer",
   "build": {
     "beforeDevCommand": "pnpm dev ",
@@ -10,8 +11,40 @@
   },
   "app": {
     "security": {
-      "csp": null
-    }
+      "csp": "default-src * data: blob:; img-src * 'self' asset: https: data: blob:; style-src * 'unsafe-inline'; worker-src 'self' blob:; script-src * 'unsafe-eval';",
+      "devCsp": "default-src * data: blob:; img-src * 'self' asset: https: data: blob:; style-src * 'unsafe-inline'; worker-src 'self' blob:; script-src * 'unsafe-eval';",
+      "assetProtocol": {
+        "enable": true,
+        "scope": [
+          "$CACHE/**",
+          "$CONFIG/**"
+        ]
+      }
+    },
+    "withGlobalTauri": true,
+    "windows": [
+      {
+        "label": "splashscreen",
+        "url": "/splashscreen",
+        "height": 300,
+        "width": 400,
+        "decorations": false,
+        "resizable": false,
+        "shadow": true,
+        "alwaysOnTop": true,
+        "transparent": true,
+        "focus": true,
+        "skipTaskbar": true,
+        "windowEffects": {
+          "effects": [
+            "tabbedLight",
+            "acrylic"
+          ]
+        },
+        "center": true,
+        "theme": "Light"
+      }
+    ]
   },
   "bundle": {
     "active": true,

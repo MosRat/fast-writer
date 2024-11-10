@@ -10,7 +10,25 @@ const routes: Array<RouteRecordRaw> = [
     {
         path: '/header',
         name: 'header',
+        alias: '/h',
         component: () => import('@cp/TitleBar.vue'),
+    },
+    {
+        path: '/config',
+        name: 'config',
+        component: () => import('@view/configs/Config.vue'),
+        children:[
+            {
+                path:"general",
+                name:"general",
+                component:()=>import('@view/configs/GeneralConfig.vue')
+            }
+        ]
+    },
+    {
+        path: '/screenshot',
+        name: 'screenshot',
+        component: () => import('@view/Screenshot.vue'),
     },
     {
         path: '/overleaf',

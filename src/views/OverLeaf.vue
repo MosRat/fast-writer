@@ -40,10 +40,11 @@ import LatexEditor from "@cp/LatexEditor.vue";
   box-sizing: border-box;
   height: 90vh;
   border: 1px solid transparent;
-  border-radius: 2px;
-  background: transparent;
-  padding: 2px;
-  margin: 8px;
+  border-radius: 12px;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+  padding: 10px;
+  margin: 5px;
 }
 
 </style>
